@@ -1,7 +1,7 @@
 numSum = 0
 numberList = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
 
-with open(r"C:\\Git\AOC-2023\day1\day1aInput.txt", "r") as file:
+with open(r".\day1\day1aInput.txt", "r") as file:
     for line in file:
         nums = []
 
