@@ -1,6 +1,4 @@
 numSum = 0
-gameNums = []
-
 gameLims = {'red':12, 'green':13, 'blue':14}
 
 with open(r".\day2\day2Input.txt", "r") as file:
