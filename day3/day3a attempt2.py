@@ -10,15 +10,15 @@ def find_number(data, i, j):
      keepGoing = True
      number = []
      while keepGoing:
-          if not data[i][j].isdigit():
+          if j == len(data[i]) or not data[i][j].isdigit():
                return number
           else:
                number.append(data[i][j])
                j += 1
 
 def is_symbol_near(data, i, j, numDigits): # bug in here
-    for scani in range(i - 1, i + numDigits + 2):
-        for scanj in range(j - 1, j + 2):
+    for scanj in range(j - 1, j + numDigits + 2):
+        for scani in range(i - 1, i + 2):
                 if (scani >= 0 and scani < len(data) and scanj >= 0 and scanj < len(data[i])):
                      if is_character(data[scani][scanj]):
                           return True
@@ -30,11 +30,9 @@ def wipe_number(data, i, j, numDigits):
     return data
 
 data = []
-with open(r".\day3\Test.txt", "r") as file:
+with open(r".\day3\input.txt", "r") as file:
     for line in file:
         data.append(list(line.rstrip()))
-
-print(data)
 
 for i in range(len(data)):
      for j in range(len(data[0])):
@@ -43,8 +41,4 @@ for i in range(len(data)):
                 data = wipe_number(data, i, j, len(number))
                 if is_symbol_near(data, i ,j , len(number)): # bug here  
                     total += int(''.join(number))
-                
-                    
-               # add total by number if symbol around
-               # if symbol, remove number
 print(total)
