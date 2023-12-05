@@ -16,11 +16,11 @@ def find_number(data, i, j):
                number.append(data[i][j])
                j += 1
 
-def is_symbol_near(data, i, j, numDigits):
+def is_symbol_near(data, i, j, numDigits): # bug in here
     for scani in range(i - 1, i + numDigits + 2):
-        for scanj in range(-1,2):
-                if (i+scani >= 0 and i+scani < len(data) and j+scanj >= 0 and j+scanj < len(data[j])):
-                     if is_character(data[scanj][scani]):
+        for scanj in range(j - 1, j + 2):
+                if (scani >= 0 and scani < len(data) and scanj >= 0 and scanj < len(data[i])):
+                     if is_character(data[scani][scanj]):
                           return True
     return False
 
@@ -35,13 +35,14 @@ with open(r".\day3\Test.txt", "r") as file:
         data.append(list(line.rstrip()))
 
 print(data)
+
 for i in range(len(data)):
      for j in range(len(data[0])):
           if data[i][j].isdigit():
-               number = find_number(data,i,j)
-               if is_symbol_near(data,i,j, len(number)):   
+                number = find_number(data, i, j)
+                data = wipe_number(data, i, j, len(number))
+                if is_symbol_near(data, i ,j , len(number)): # bug here  
                     total += int(''.join(number))
-                    data = wipe_number(data,i,j,len(number))
                 
                     
                # add total by number if symbol around
